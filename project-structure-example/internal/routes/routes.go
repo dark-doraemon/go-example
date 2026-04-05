@@ -2,14 +2,15 @@ package routes
 
 import (
 	"project-structure/internal/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
-type Route interface {
+type IRoute interface {
 	Register(r *gin.RouterGroup)
 }
 
-func RegisterRoutes(r *gin.Engine, routes ...Route) {
+func RegisterRoutes(r *gin.Engine, routes ...IRoute) {
 	r.Use(middleware.AuthMiddleware())
 
 	api := r.Group("/api/v1")
