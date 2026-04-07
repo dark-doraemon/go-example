@@ -2,6 +2,7 @@ package app
 
 import (
 	"project-structure/internal/config"
+	"project-structure/internal/middleware"
 	"project-structure/internal/routes"
 
 	"github.com/gin-gonic/gin"
@@ -23,6 +24,8 @@ func NewApplication(cfg *config.Config) *Application {
 	modules := []IModule{
 		NewUserModule(),
 	}
+
+	go middleware.CleanupClients()
 
 	routes.RegisterRoutes(r, getModuleRoutes(modules)...)
 

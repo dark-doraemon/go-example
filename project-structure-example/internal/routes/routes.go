@@ -12,6 +12,7 @@ type IRoute interface {
 
 func RegisterRoutes(r *gin.Engine, routes ...IRoute) {
 	r.Use(middleware.AuthMiddleware())
+	r.Use(middleware.RateLimitingMiddlware())
 
 	api := r.Group("/api/v1")
 
