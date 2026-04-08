@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17.5-alpine3.22
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: master-golang
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5436:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
